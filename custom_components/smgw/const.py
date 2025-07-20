@@ -6,7 +6,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import UnitOfEnergy
 
-DOMAIN = "ppc_smgw"
+DOMAIN = "smgw"
 DEFAULT_NAME = "SMGW"
 DEFAULT_USERNAME = ""
 DEFAULT_PASSWORD = ""

@@ -44,4 +44,4 @@ class RestartGatewayButton(SMGWEntity, ButtonEntity):
     async def async_press(self) -> None:
         """Press the Restart Button."""
         _LOGGER.debug("Restart of Gateway requested")
-        await self.coordinator.config_entry.runtime_data.client.ppc_smgw_client.reboot()
+        await self.coordinator.config_entry.runtime_data.gateway.client.reboot()

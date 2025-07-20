@@ -6,4 +6,4 @@ homeassistant:
 logger:
   default: info
   logs:
-    custom_components.ppc_smgw: debug
+    custom_components.smgw: debug

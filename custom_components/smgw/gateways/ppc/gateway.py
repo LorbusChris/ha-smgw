@@ -4,17 +4,15 @@ import asyncio
 import httpx
 import urllib3
 
-from custom_components.ppc_smgw import Gateway
-from custom_components.ppc_smgw.gateways.reading import Information, FakeInformation
-from custom_components.ppc_smgw.gateways.theben.conexa.conexa import (
-    ThebenConexaClient,
-)
+from custom_components.smgw.gateways.gateway import Gateway
+from custom_components.smgw.gateways.ppc.smgw.client import PpcSmgwClient
+from custom_components.smgw.gateways.reading import Information, FakeInformation
 
-# Needed as the SMGW uses a self-signed certificate
+# Needed as the PPC SMGW uses a self-signed certificate
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-class ThebenConexa(Gateway):
+class PpcSmgw(Gateway):
     def __init__(
         self,
         host: str,
@@ -26,8 +24,8 @@ class ThebenConexa(Gateway):
     ) -> None:
         super().__init__(host, username, password, websession, logger, debug)
 
-        self.client = ThebenConexaClient(
-            base_url=host,
+        self.client = PpcSmgwClient(
+            host=host,
             username=username,
             password=password,
             httpx_client=websession,

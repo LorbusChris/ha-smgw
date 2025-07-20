@@ -6,18 +6,17 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .errors import SessionCookieStillPresentError
-from custom_components.ppc_smgw.const import (
-    DEFAULT_NAME,
+from custom_components.smgw.const import (
     PPC_DEFAULT_NAME,
     PPC_DEFAULT_MODEL,
     PPC_MANUFACTURER,
 )
-from custom_components.ppc_smgw.gateways.reading import Reading, Information, OBISCode
+from custom_components.smgw.gateways.reading import Reading, Information, OBISCode
 
 from homeassistant.util.dt import now
 
 
-class PPCSmgw:
+class PpcSmgwClient:
     def __init__(
         self,
         host: str,

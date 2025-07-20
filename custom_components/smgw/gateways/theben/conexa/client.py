@@ -1,11 +1,11 @@
 import httpx
 
-from custom_components.ppc_smgw.const import (
+from custom_components.smgw.const import (
     THEBEN_DEFAULT_NAME,
     THEBEN_MANUFACTURER,
     THEBEN_DEFAULT_MODEL,
 )
-from custom_components.ppc_smgw.gateways.reading import Information, OBISCode, Reading
+from custom_components.smgw.gateways.reading import Information, OBISCode, Reading
 from datetime import datetime, timezone
 
 

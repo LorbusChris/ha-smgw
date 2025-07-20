@@ -40,6 +40,6 @@ class SMGwDataUpdateCoordinator(DataUpdateCoordinator):
 class Data:
     """Data for the Blueprint integration."""
 
-    client: Gateway
+    gateway: Gateway
     coordinator: SMGwDataUpdateCoordinator
     integration: Integration

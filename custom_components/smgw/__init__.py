@@ -16,10 +16,10 @@ from homeassistant.loader import async_get_loaded_integration
 
 from .const import DEFAULT_SCAN_INTERVAL, DOMAIN, CONF_METER_TYPE
 from .coordinator import SMGwDataUpdateCoordinator, ConfigEntry, Data
-from custom_components.ppc_smgw.gateways.gateway import Gateway
-from custom_components.ppc_smgw.gateways.theben.theben import ThebenConexa
-from custom_components.ppc_smgw.gateways.vendors import Vendor
-from custom_components.ppc_smgw.gateways.ppc.ppc_smgw import PPC_SMGW
+from custom_components.smgw.gateways.gateway import Gateway
+from custom_components.smgw.gateways.theben.gateway import ThebenConexa
+from custom_components.smgw.gateways.vendors import Vendor
+from custom_components.smgw.gateways.ppc.gateway import PpcSmgw
 
 _LOGGER = logging.getLogger(__name__)
 CONFIG_SCHEMA = vol.Schema({DOMAIN: vol.Schema({})}, extra=vol.ALLOW_EXTRA)
@@ -51,15 +51,15 @@ async def async_setup_entry(
     if CONF_DEBUG in entry.data:
         development_mode = entry.data[CONF_DEBUG]
 
-    client: Gateway
+    gateway: Gateway
 
     _LOGGER.debug(
         f"Vendor is: {entry.data[CONF_METER_TYPE]} ({type(entry.data[CONF_METER_TYPE])})"
     )
     match Vendor(entry.data[CONF_METER_TYPE]):
         case Vendor.PPC:
-            _LOGGER.debug(f"Initializing PPC SMGW client")
-            client = PPC_SMGW(
+            _LOGGER.debug(f"Initializing PPC SMGW")
+            gateway = PpcSmgw(
                 host=entry.data[CONF_HOST],
                 username=entry.data[CONF_USERNAME],
                 password=entry.data[CONF_PASSWORD],
@@ -68,8 +68,8 @@ async def async_setup_entry(
                 debug=development_mode,
             )
         case Vendor.Theben:
-            _LOGGER.debug(f"Initializing Theben client")
-            client = ThebenConexa(
+            _LOGGER.debug(f"Initializing Theben SMGW")
+            gateway = ThebenConexa(
                 host=entry.data[CONF_HOST],
                 username=entry.data[CONF_USERNAME],
                 password=entry.data[CONF_PASSWORD],
@@ -83,7 +83,7 @@ async def async_setup_entry(
             )
 
     entry.runtime_data = Data(
-        client=client,
+        gateway=gateway,
         integration=async_get_loaded_integration(hass, entry.domain),
         coordinator=coordinator,
     )

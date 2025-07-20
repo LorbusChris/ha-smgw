@@ -1,6 +1,6 @@
 {
-  "domain": "ppc_smgw",
-  "name": "PPC SMGW",
+  "domain": "smgw",
+  "name": "SMGW",
   "codeowners": ["@jannickfahlbusch"],
   "config_flow": true,
   "dependencies": [],

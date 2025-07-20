@@ -1,4 +1,4 @@
-from custom_components.ppc_smgw.gateways.reading import Information
+from custom_components.smgw.gateways.reading import Information
 import logging
 
 import httpx

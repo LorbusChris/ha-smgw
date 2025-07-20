@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .const import SENSOR_TYPES, LastUpdatedSensorDescription
 from .coordinator import SMGwDataUpdateCoordinator, ConfigEntry
 from .entity import SMGWEntity
-from custom_components.ppc_smgw.gateways.reading import Information
+from custom_components.smgw.gateways.reading import Information
 
 _LOGGER = logging.getLogger(__name__)
 PARALLEL_UPDATES = 0

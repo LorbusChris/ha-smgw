@@ -1,4 +1,4 @@
-"""Errors for the PPC-SMGW integration."""
+"""Errors for the SMGW integration."""
 
 
 class SessionCookieStillPresentError(Exception):
